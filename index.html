@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glyphonic — Nothing Phone (4a) light composer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <h1>Glyphonic</h1>
+  </div>
+  <p class="tagline">Sync your Nothing Phone (4a) Glyph Bar to any ringtone or notification tone. Free. Open source. Runs entirely in your browser.</p>
+</header>
+
+<main>
+
+  <section class="panel" id="load-panel">
+    <div class="panel-head">
+      <h2>01 — Load audio</h2>
+      <span class="hint">.ogg files only (Opus or Vorbis) — we edit the light data, not the audio</span>
+    </div>
+    <div class="load-row">
+      <label class="file-drop" for="file-input">
+        <input type="file" id="file-input" accept=".ogg,audio/ogg">
+        <span id="file-drop-label">Drop an .ogg file here, or click to choose one</span>
+      </label>
+      <div class="transport" id="transport" hidden>
+        <button id="play-btn" class="btn btn-icon" aria-label="Play">▶</button>
+        <span class="time-readout" id="time-readout">00:00.00 / 00:00.00</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="editor-panel" hidden>
+    <div class="panel-head">
+      <h2>02 — Compose</h2>
+      <span class="hint">Click a zone lane to place a light hit at that moment. Click a hit to remove it. Drag its edge to resize.</span>
+    </div>
+
+    <div class="waveform-wrap">
+      <canvas id="waveform" height="120"></canvas>
+      <div class="playhead" id="playhead"></div>
+    </div>
+
+    <div class="zones" id="zones">
+      <!-- 6 zone lanes injected by js/editor.js, matching the Glyph Bar's 6 columns -->
+    </div>
+
+    <div class="editor-tools">
+      <label class="field">
+        Hit length
+        <input type="range" id="hit-length" min="1" max="30" value="4">
+        <output id="hit-length-out">66 ms</output>
+      </label>
+      <label class="field">
+        Brightness
+        <input type="range" id="hit-brightness" min="1" max="4095" value="4095">
+        <output id="hit-brightness-out">4095</output>
+      </label>
+      <button id="clear-btn" class="btn btn-ghost">Clear all hits</button>
+    </div>
+  </section>
+
+  <section class="panel" id="export-panel" hidden>
+    <div class="panel-head">
+      <h2>03 — Export</h2>
+      <span class="hint">Generates a new .ogg with the Glyph light data embedded. Set it as your ringtone or notification sound from your phone's normal sound settings.</span>
+    </div>
+    <div class="export-row">
+      <input type="text" id="composition-title" placeholder="Composition title" maxlength="60">
+      <button id="export-btn" class="btn btn-primary">Export composition</button>
+    </div>
+    <p class="status" id="export-status"></p>
+    <details class="notice">
+      <summary>Before you use this</summary>
+      <p>This project reverse-engineers a documented but unofficial file format and is not affiliated with, endorsed by, or sponsored by Nothing Technology Limited. It has not been verified end-to-end against every phone or OS version. Test it on your own device before relying on it, and expect the first few exports to need debugging. See the <a href="https://github.com/SebiAi/custom-nothing-glyph-tools/blob/main/docs/9_Technical%20Details.md" target="_blank" rel="noopener">technical spec this is built on</a> for details.</p>
+    </details>
+  </section>
+
+</main>
+
+<footer>
+  <p>Glyphonic is free, open source, and runs entirely client-side — your audio never leaves your browser. Not affiliated with Nothing Technology Limited.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako.min.js"></script>
+<script src="js/crc32.js"></script>
+<script src="js/oggComment.js"></script>
+<script src="js/glyphFormat.js"></script>
+<script src="js/waveform.js"></script>
+<script src="js/editor.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
