@@ -14,6 +14,7 @@ let includeCameraZone = false;
 const zonesContainer = document.getElementById('zones');
 const hitLengthInput = document.getElementById('hit-length');
 const hitLengthOut = document.getElementById('hit-length-out');
+const hitLengthHint = document.getElementById('hit-length-hint');
 const hitBrightnessInput = document.getElementById('hit-brightness');
 const hitBrightnessOut = document.getElementById('hit-brightness-out');
 const clearBtn = document.getElementById('clear-btn');
@@ -143,10 +144,23 @@ function startResize(zoneIndex, hitIndex, lane) {
 
 // --- Slider wiring ---
 
+function updateHitLengthHint(ms) {
+  if (ms <= 70) {
+    hitLengthHint.innerHTML = '<strong>Snappy</strong> — crisp flashes, best for fast or high-energy songs';
+  } else if (ms <= 150) {
+    hitLengthHint.innerHTML = '<strong>Balanced</strong> — works well for most songs';
+  } else {
+    hitLengthHint.innerHTML = '<strong>Ambient</strong> — longer glows, best for slow or atmospheric songs';
+  }
+}
+
 hitLengthInput.addEventListener('input', () => {
   const ms = Math.round(parseInt(hitLengthInput.value, 10) * FRAME_SECONDS * 1000);
   hitLengthOut.textContent = `${ms} ms`;
+  updateHitLengthHint(ms);
 });
+
+updateHitLengthHint(Math.round(parseInt(hitLengthInput.value, 10) * FRAME_SECONDS * 1000)); // show the right hint immediately on page load, not just after the first drag
 
 hitBrightnessInput.addEventListener('input', () => {
   hitBrightnessOut.textContent = hitBrightnessInput.value;

@@ -235,6 +235,17 @@ main {
   color: var(--fg);
   font-size: 12px;
 }
+.slider-hint {
+  font-size: 11px;
+  color: var(--muted);
+  max-width: 20ch;
+  line-height: 1.4;
+}
+
+.slider-hint strong {
+  color: var(--fg);
+  font-weight: 500;
+}
 
 .export-row {
   display: flex;
