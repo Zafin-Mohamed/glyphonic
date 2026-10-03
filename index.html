@@ -54,10 +54,11 @@
     </div>
 
         <div class="editor-tools">
-      <label class="field">
+            <label class="field">
         Hit length
         <input type="range" id="hit-length" min="1" max="30" value="4">
         <output id="hit-length-out">66 ms</output>
+        <span class="slider-hint" id="hit-length-hint"></span>
       </label>
       <label class="field">
         Brightness
@@ -68,6 +69,7 @@
         <input type="checkbox" id="camera-zone-toggle">
         Include red camera light (experimental, unofficial)
       </label>
+      <button id="auto-generate-btn" class="btn btn-primary">Auto-generate light show</button>
       <button id="clear-btn" class="btn btn-ghost">Clear all hits</button>
     </div>
   </section>

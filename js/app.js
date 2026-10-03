@@ -4,6 +4,7 @@
 
 const fileInput = document.getElementById('file-input');
 const fileDropLabel = document.getElementById('file-drop-label');
+const autoGenerateBtn = document.getElementById('auto-generate-btn');
 const editorPanel = document.getElementById('editor-panel');
 const transport = document.getElementById('transport');
 const playBtn = document.getElementById('play-btn');
@@ -71,3 +72,12 @@ function playbackLoop() {
 
   requestAnimationFrame(playbackLoop);
 }
+autoGenerateBtn.addEventListener('click', async () => {
+  autoGenerateBtn.textContent = 'Analyzing...';
+  autoGenerateBtn.disabled = true;
+
+  await autoGenerateLightShow();
+
+  autoGenerateBtn.textContent = 'Auto-generate light show';
+  autoGenerateBtn.disabled = false;
+});
