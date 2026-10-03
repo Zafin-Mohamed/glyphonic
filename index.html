@@ -53,7 +53,7 @@
       <!-- 6 zone lanes injected by js/editor.js, matching the Glyph Bar's 6 columns -->
     </div>
 
-    <div class="editor-tools">
+        <div class="editor-tools">
       <label class="field">
         Hit length
         <input type="range" id="hit-length" min="1" max="30" value="4">
@@ -63,6 +63,10 @@
         Brightness
         <input type="range" id="hit-brightness" min="1" max="4095" value="4095">
         <output id="hit-brightness-out">4095</output>
+      </label>
+      <label class="field">
+        <input type="checkbox" id="camera-zone-toggle">
+        Include red camera light (experimental, unofficial)
       </label>
       <button id="clear-btn" class="btn btn-ghost">Clear all hits</button>
     </div>

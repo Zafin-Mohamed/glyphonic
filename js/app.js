@@ -7,7 +7,8 @@ const fileDropLabel = document.getElementById('file-drop-label');
 const editorPanel = document.getElementById('editor-panel');
 const transport = document.getElementById('transport');
 const playBtn = document.getElementById('play-btn');
-const timeReadout = document.getElementById('time-readout');
+const timeReadout = document.getElementById('time-readout');  
+const playhead = document.getElementById('playhead');
 
 fileInput.addEventListener('change', async (event) => {
   const file = event.target.files[0]; // the file the user picked
@@ -20,7 +21,8 @@ fileInput.addEventListener('change', async (event) => {
 
   await loadAudioFile(file); // defined in waveform.js
 
-  transport.hidden = false;   // now that audio is loaded, show the play button
+    transport.hidden = false;   // now that audio is loaded, show the play button
+  renderZones();               // build the zone lanes now that we know the song's duration
   updateTimeReadout();
 });
 
@@ -35,6 +37,11 @@ function updateTimeReadout() {
   const current = getCurrentPlaybackTime();
   const duration = audioBuffer ? audioBuffer.duration : 0;
   timeReadout.textContent = `${formatTime(current)} / ${formatTime(duration)}`;
+
+  const waveformWrap = document.querySelector('.waveform-wrap');
+  if (waveformWrap) {
+    playhead.style.left = secondsToPixel(current, waveformWrap.clientWidth) + 'px';
+  }
 }
 
 playBtn.addEventListener('click', () => {
