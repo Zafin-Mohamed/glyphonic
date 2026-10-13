@@ -349,3 +349,14 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+.notice ol {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.notice li { margin-bottom: 6px; }
+
+.notice strong { color: var(--fg); font-weight: 500; }
