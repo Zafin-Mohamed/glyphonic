@@ -44,13 +44,25 @@
       <span class="hint">Click a zone lane to place a light hit at that moment. Click a hit to remove it. Drag its edge to resize.</span>
     </div>
 
-    <div class="waveform-wrap">
-      <canvas id="waveform" height="120"></canvas>
-      <div class="playhead" id="playhead"></div>
-    </div>
+    <div class="editor-layout">
+      <div class="editor-main">
+        <div class="waveform-wrap">
+          <canvas id="waveform" height="120"></canvas>
+          <div class="playhead" id="playhead"></div>
+        </div>
 
-    <div class="zones" id="zones">
-      <!-- 6 zone lanes injected by js/editor.js, matching the Glyph Bar's 6 columns -->
+        <div class="zones" id="zones">
+          <!-- 6 zone lanes injected by js/editor.js, matching the Glyph Bar's 6 columns -->
+        </div>
+      </div>
+
+      <aside class="glyph-preview" aria-label="Glyph Bar preview">
+        <div class="glyph-shell">
+          <div class="glyph-bar" id="glyph-bar"></div>
+          <div class="glyph-labels" id="glyph-labels"></div>
+        </div>
+        <span class="glyph-caption">Live preview.<br>Press play to see it.</span>
+      </aside>
     </div>
 
     <div class="editor-tools">
@@ -114,6 +126,7 @@
 <script src="js/glyphFormat.js"></script>
 <script src="js/waveform.js"></script>
 <script src="js/editor.js"></script>
+<script src="js/preview.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

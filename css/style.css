@@ -360,3 +360,80 @@ footer {
 .notice li { margin-bottom: 6px; }
 
 .notice strong { color: var(--fg); font-weight: 500; }
+
+/* --- Glyph Bar preview --- */
+
+.editor-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.editor-main {
+  flex: 1;
+  min-width: 0; /* lets the waveform and lanes shrink instead of overflowing */
+}
+
+.glyph-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  width: 112px;
+}
+
+.glyph-shell {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: #000;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 16px 14px 16px 18px;
+}
+
+.glyph-bar,
+.glyph-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.glyph-seg {
+  position: relative;
+  width: 28px;
+  height: 30px;
+  background: #19191a;
+}
+
+.glyph-seg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--seg-color);
+  opacity: var(--level, 0);
+  box-shadow: 0 0 calc(var(--level, 0) * 16px) var(--seg-color);
+}
+
+.glyph-seg.is-disabled { opacity: 0.35; }
+
+.glyph-labels span {
+  height: 30px;
+  line-height: 30px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.glyph-caption {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .editor-layout { flex-direction: column; align-items: stretch; }
+  .glyph-preview { align-self: center; }
+}

@@ -63,12 +63,15 @@ function updateTimeReadout() {
   if (waveformWrap) {
     playhead.style.left = secondsToPixel(current, waveformWrap.clientWidth) + 'px';
   }
+
+  updateGlyphPreview(current); // light up the Glyph Bar preview (defined in preview.js)
 }
 
 playBtn.addEventListener('click', () => {
   if (isPlaying) {
     pauseAudio();
     playBtn.textContent = '▶';
+    updateTimeReadout(); // refresh so the preview switches off when you pause
   } else {
     playAudio(getCurrentPlaybackTime());
     playBtn.textContent = '⏸';
