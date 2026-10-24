@@ -437,3 +437,19 @@ footer {
   .editor-layout { flex-direction: column; align-items: stretch; }
   .glyph-preview { align-self: center; }
 }
+.field select {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--fg);
+  color-scheme: dark;
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 0 10px;
+  height: 36px;
+}
+
+.field select:focus {
+  outline: none;
+  border-color: var(--accent);
+}

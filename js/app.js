@@ -100,10 +100,15 @@ autoGenerateBtn.addEventListener('click', async () => {
   autoGenerateBtn.textContent = 'Analyzing...';
   autoGenerateBtn.disabled = true;
 
-  await autoGenerateLightShow();
-
-  autoGenerateBtn.textContent = 'Auto-generate light show';
-  autoGenerateBtn.disabled = false;
+  try {
+    await autoGenerateLightShow(document.getElementById('light-density').value);
+  } catch (error) {
+    console.error(error);
+    setExportStatus("Couldn't analyse this song. Try another file.", 'error');
+  } finally {
+    autoGenerateBtn.textContent = 'Auto-generate light show';
+    autoGenerateBtn.disabled = false;
+  }
 });
 
 // --- Export ---
