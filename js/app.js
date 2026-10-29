@@ -101,7 +101,10 @@ autoGenerateBtn.addEventListener('click', async () => {
   autoGenerateBtn.disabled = true;
 
   try {
-    await autoGenerateLightShow(document.getElementById('light-density').value);
+        await autoGenerateLightShow(
+      document.getElementById('light-density').value,
+      document.getElementById('drop-sweeps').checked
+    );
   } catch (error) {
     console.error(error);
     setExportStatus("Couldn't analyse this song. Try another file.", 'error');
